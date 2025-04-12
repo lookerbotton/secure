@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bank of America</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f4f4f4;
+      text-align: center;
+    }
+    .header {
+      background-color: white;
+      padding: 10px;
+      font-weight: bold;
+      font-size: 24px;
+      color: #002F6C;
+      border-bottom: 1px solid #ccc;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .container {
+      margin: 20px auto;
+      max-width: 400px;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input[type="text"], input[type="password"] {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .options {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+    }
+    .options label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 14px;
+    }
+    .button-link {
+      background-color: #5a6d8d;
+      color: white;
+      padding: 10px;
+      text-decoration: none;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    .link {
+      color: #0072ce;
+      font-size: 14px;
+      display: block;
+      margin-top: 10px;
+    }
+    .my-balance {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 10px;
+    }
+    .grid-item {
+      background-color: white;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+    .footer-links {
+      margin-top: 20px;
+      font-size: 14px;
+    }
+    .footer-links a {
+      color: #0072ce;
+      text-decoration: none;
+      margin: 0 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">
+      <img src="logo.png" alt="BANK OF AMERICA" height="45">
+    </div>
+  </div>
+
+  <div class="container">
+    <input type="text" id="username" placeholder="User ID">
+    <input type="password" id="password" placeholder="Password">
+    <div class="options">
+      <label><input type="checkbox"> Save User ID</label>
+      <label><input type="checkbox"> Set Up Face ID</label>
+    </div>
+    <button class="button-link" onclick="login()">LOG IN</button>
+    <a href="index.html" class="link">Forgot ID/Password</a>
+  </div>
+
+  <div class="my-balance">My Balance ™</div>
+  <div class="grid">
+    <div class="grid-item">
+      <strong>Zelle®</strong><br>
+      A safe way to send money to people you know
+    </div>
+    <div class="grid-item">
+      Find out the value of your home
+    </div>
+    <div class="grid-item">
+      Open an account or apply for a loan
+    </div>
+    <div class="grid-item">
+      Thinking of buying a home?
+    </div>
+  </div>
+
+  <div class="footer-links">
+    <a href="#">Locations</a> | <a href="#">Contact Us</a>
+  </div>
+
+  <script>
+    function login() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      if (username === "Jamesblunt" && password === "@James123") {
+        window.location.href = "home.html";
+      } else {
+        alert("We can't verify your information. Please try again..");
+      }
+    }
+  </script>
+</body>
+</html>

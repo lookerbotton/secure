@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Logged in</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #c40028;
+      --light-gray: #f5f5f5;
+      --gray: #ccc;
+      --text-color: #333;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: #fff;
+      color: var(--text-color);
+      width: 100vw;
+      max-width: 100vw;
+      overflow-x: hidden;
+    }
+    .header {
+      background: #fff;
+      padding: 8px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--gray);
+      font-size: 14px;
+    }
+    .time {
+      background: red;
+      color: white;
+      border-radius: 12px;
+      padding: 2px 8px;
+      font-size: 12px;
+    }
+    .top-icons {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .top-icons div {
+      position: relative;
+    }
+    .top-icons div sup {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      background: blue;
+      color: white;
+      font-size: 10px;
+      padding: 2px 5px;
+      border-radius: 10px;
+    }
+    .tab-bar {
+      display: flex;
+      justify-content: space-around;
+      border-bottom: 1px solid var(--gray);
+      font-size: 16px;
+    }
+    .tab-bar div {
+      flex: 1;
+      text-align: center;
+      padding: 10px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .tab-bar .active {
+      color: var(--primary-color);
+      border-bottom: 2px solid var(--primary-color);
+    }
+    .search-bar {
+      padding: 10px 15px;
+      background: var(--light-gray);
+      font-size: 16px;
+    }
+    .card {
+      padding: 15px;
+      margin: 10px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    }
+    .card .section-title {
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+    .card small {
+      color: #555;
+    }
+    .account-summary {
+      padding: 10px 15px 5px 15px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .account-summary span {
+      float: right;
+    }
+    .account-list {
+      background: white;
+      margin: 0 10px 15px 10px;
+      padding: 10px 15px;
+      border-radius: 10px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    }
+    .account-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      font-size: 15px;
+      border-top: 1px solid #eee;
+    }
+    .account-item:first-child {
+      border-top: none;
+    }
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      background: #fff;
+      border-top: 1px solid var(--gray);
+      padding: 8px 0;
+      font-size: 12px;
+    }
+    .bottom-nav div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+    }
+    .bottom-nav div span {
+      font-size: 20px;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="time" id="header-time">12:25</div>
+    <div class="top-icons">
+      <div>📩<sup>4</sup></div>
+      <div>🛒</div>
+      <div>🔓</div>
+    </div>
+</div>
+
+<script>
+  function updateTime() {
+    const timeElement = document.getElementById('header-time');
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    timeElement.textContent = `${hours}:${minutes}`;
+  }
+
+  // Update the time every minute
+  setInterval(updateTime, 60000);
+
+  // Set the initial time immediately
+  updateTime();
+</script>
+
+  <div class="tab-bar">
+  <a href="#accounts" style="text-decoration: none; color: inherit;" onclick="showTab('accounts')">
+    <div id="tab-accounts" class="active">Accounts</div>
+  </a>
+  <a href="transfer.html" style="text-decoration: none; color: inherit;" onclick="showTab('dashboard')">
+    <div id="tab-dashboard">Dashboard</div>
+  </a>
+</div>
+
+  <div id="accounts-content">
+    <div class="search-bar">Hi I'm Erica. How can I help?</div>
+    <div class="card">
+      <div class="section-title">Hello, James Blunt</div>
+      <div>Preferred Rewards Platinum Member</div>
+      <div style="margin-top: 10px;">➤ Bank of America Life Plan®<br /><small>Your next steps are ready. Let's go!</small></div>
+      <div style="margin-top: 10px;">My Rewards</div>
+      <div style="margin-top: 10px;">🐂 Contact Us</div>
+    </div>
+    <div class="account-summary">
+      Banking <span>$10,004,609.80</span>
+    </div>
+    <div class="account-list">
+      <div class="account-item">
+        <span>My Checking - 1234</span>
+        <span>$7,830,146.13</span>
+      </div>
+      <div class="account-item">
+        <span>Savings - 9876</span>
+        <span>$2,174,463.67</span>
+      </div>
+    </div>
+  </div>
+  <div id="dashboard-content" class="hidden">
+    <div class="card">
+      <div class="section-title">Dashboard Overview</div>
+      <div>ACCOUNT FROZEN.</div>
+    </div>
+  </div>
+  <div class="bottom-nav">
+    <div onclick="alert('Account Frozen!')"><span>💲</span>Accounts</div>
+    <div onclick="alert('Account Frozen!')"><span>🔁</span>Pay & Transfer</div>
+    <div onclick="alert('Account Frozen!')"><span>📄</span>Deposit Checks</div>
+    <div onclick="alert('Account Frozen!')"><span>💱</span>Trade</div>
+  </div>
+  <script>
+    function showTab(tab) {
+      const accountsTab = document.getElementById('tab-accounts');
+      const dashboardTab = document.getElementById('tab-dashboard');
+      const accountsContent = document.getElementById('accounts-content');
+      const dashboardContent = document.getElementById('dashboard-content');
+
+      if (tab === 'accounts') {
+        accountsTab.classList.add('active');
+        dashboardTab.classList.remove('active');
+        accountsContent.classList.remove('hidden');
+        dashboardContent.classList.add('hidden');
+      } else {
+        dashboardTab.classList.add('active');
+        accountsTab.classList.remove('active');
+        dashboardContent.classList.remove('hidden');
+        accountsContent.classList.add('hidden');
+      }
+    }
+  </script>
+</body>
+</html>

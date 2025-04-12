@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Banking Dashboard</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      background-color: #f8f8f8;
+    }
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      background-color: white;
+    }
+    .top-left {
+      display: flex;
+      align-items: center;
+    }
+    .top-left span.time {
+      background-color: red;
+      color: white;
+      border-radius: 10px;
+      padding: 2px 8px;
+      font-size: 14px;
+    }
+    .top-right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .top-right span {
+      position: relative;
+    }
+    .top-right span::after {
+      content: attr(data-count);
+      position: absolute;
+      top: -6px;
+      right: -10px;
+      background: blue;
+      text-decoration: none;
+      color: white;
+      font-size: 10px;
+      border-radius: 10px;
+      padding: 2px 4px;
+    }
+    .search-bar {
+      margin: 10px;
+      padding: 10px;
+      background: white;
+      border-radius: 5px;
+    }
+    .search-bar input {
+      width: 100%;
+      border: none;
+      font-size: 16px;
+      outline: none;
+    }
+    .main-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 10px;
+    }
+    .button-tile {
+      background: white;
+      padding: 20px;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      cursor: pointer;
+    }
+    .activity {
+      padding: 10px;
+    }
+    .activity h3 {
+      margin-bottom: 10px;
+    }
+    .activity-card {
+      background: white;
+      padding: 10px;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+    .activity-card .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .activity-card .top button {
+      background: #ccc;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+    }
+    
+     .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      background: #fff;
+      border-top: 1px solid var(--gray);
+      padding: 8px 0;
+      font-size: 12px;
+    }
+    .bottom-nav div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+    }
+    .bottom-nav div span {
+      font-size: 20px;
+    }
+    .footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: white;
+      display: flex;
+      justify-content: space-around;
+      border-top: 1px solid #ddd;
+      padding: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="top-left">
+      <span class="time" id="current-time">12:25</span>
+    </div>
+    <div class="top-right">
+      <span data-count="4">📧 Inbox</span>
+      <span>🛒 Products</span>
+      <a href="index.html"><span>🔚 Log Out</span></a>
+    </div>
+</div>
+
+<script>
+  function updateTime() {
+    const timeElement = document.getElementById('current-time');
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    timeElement.textContent = `${hours}:${minutes}`;
+  }
+
+  // Update the time every minute
+  setInterval(updateTime, 60000);
+
+  // Set the initial time immediately
+  updateTime();
+</script>
+
+  <div class="search-bar">
+    <input type="text" placeholder="How can we help?" />
+  </div>
+  <div class="main-buttons">
+  <div class="button-tile" onclick="selectOption('Transfer')">
+    <a href="send.html" class="no-underline">🔁<br>Transfer<br><small>between my accounts</small></a>
+  </div>
+  <div class="button-tile" onclick="selectOption('Zelle')">
+    <a href="#" class="no-underline">💸<br>Zelle<br><small>send or request</small></a>
+  </div>
+  <div class="button-tile" onclick="selectOption('Pay Bills')">
+    <a href="#" class="no-underline">📅<br>Pay Bills<br><small>pay now or schedule</small></a>
+  </div>
+  <div class="button-tile" onclick="selectOption('Wire')">
+    <a href="#" class="no-underline">📤<br>Wire<br><small>U.S. or international</small></a>
+  </div>
+</div>
+
+<style>
+  .no-underline {
+    text-decoration: none;
+  }
+</style
+  <div class="activity">
+    <h3>Activity</h3>
+    <div class="activity-card">
+      <div class="top">
+        <div>
+          <strong>XYZ Gardens - 6789</strong><br>
+          Reminder<br>
+          $1255.00 due April 22
+        </div>
+        <button>PAY</button>
+      </div>
+      <small><a href="#">Mark as Paid</a></small>
+    </div>
+    <div class="activity-card">
+      <strong>Cash Rewards Visa Sig - 5830</strong><br>
+      Dec 27<br>
+      $91.14<br>
+      Received
+    </div>
+  </div>
+   <div class="bottom-nav">
+    <div onclick="alert('Account Frozen!')"><span>💲</span>Accounts</div>
+    <div onclick="alert('Account Frozen!')"><span>🔁</span>Pay & Transfer</div>
+    <div onclick="alert('Account Frozen!')"><span>📄</span>Deposit Checks</div>
+    <div onclick="alert('Account Frozen!')"><span>💱</span>Trade</div>
+  </div>
+  <script>
+    function showTab(tab) {
+      const accountsTab = document.getElementById('tab-accounts');
+      const dashboardTab = document.getElementById('tab-dashboard');
+      const accountsContent = document.getElementById('accounts-content');
+      const dashboardContent = document.getElementById('dashboard-content');
+
+      if (tab === 'accounts') {
+        accountsTab.classList.add('active');
+        dashboardTab.classList.remove('active');
+        accountsContent.classList.remove('hidden');
+        dashboardContent.classList.add('hidden');
+      } else {
+        dashboardTab.classList.add('active');
+        accountsTab.classList.remove('active');
+        dashboardContent.classList.remove('hidden');
+        accountsContent.classList.add('hidden');
+      }
+    }
+  </script>
+</body>
+</html>

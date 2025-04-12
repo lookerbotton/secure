@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Secure Bank Transfer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 1rem;
+    }
+
+    .container {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      max-width: 450px;
+      width: 100%;
+      transition: all 0.3s ease;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: #0070c9;
+      color: white;
+      cursor: pointer;
+      border: none;
+    }
+
+    button:hover {
+      background-color: #005999;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 90%;
+      max-width: 400px;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+      text-align: center;
+      z-index: 1000;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 999;
+    }
+
+    .countdown {
+      font-weight: bold;
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>Transfer Funds</h2>
+  <form id="transferForm">
+    <label for="country">Country</label>
+    <select id="country" required>
+       <option value="">Select country</option>
+        <option value="USA">USA</option>
+        <option value="UK">United Kingdom</option>
+        <option value="Nigeria">Nigeria</option>
+        <option value="Canada">Canada</option>
+        <option value="India">India</option>
+        <option value="Australia">Australia</option>
+        <option value="Germany">Germany</option>
+        <option value="France">France</option>
+        <option value="Italy">Italy</option>
+        <option value="Japan">Japan</option>
+        <option value="China">China</option>
+        <option value="Brazil">Brazil</option>
+        <option value="South Africa">South Africa</option>
+        <option value="Mexico">Mexico</option>
+        <option value="Argentina">Argentina</option>
+        <option value="Russia">Russia</option>
+        <option value="South Korea">South Korea</option>
+        <option value="Spain">Spain</option>
+        <option value="Netherlands">Netherlands</option>
+        <option value="Sweden">Sweden</option>
+        <option value="Belgium">Belgium</option>
+        <option value="Norway">Norway</option>
+        <option value="Switzerland">Switzerland</option>
+        <option value="Austria">Austria</option>
+        <option value="Denmark">Denmark</option>
+        <option value="Finland">Finland</option>
+        <option value="Poland">Poland</option>
+        <option value="Portugal">Portugal</option>
+        <option value="Greece">Greece</option>
+        <option value="Turkey">Turkey</option>
+        <option value="Israel">Israel</option>
+        <option value="Saudi Arabia">Saudi Arabia</option>
+        <option value="United Arab Emirates">United Arab Emirates</option>
+        <option value="Egypt">Egypt</option>
+        <option value="Kenya">Kenya</option>
+        <option value="Nigeria">Nigeria</option>
+        <option value="Pakistan">Pakistan</option>
+        <option value="Bangladesh">Bangladesh</option>
+        <option value="Thailand">Thailand</option>
+        <option value="Vietnam">Vietnam</option>
+        <option value="Malaysia">Malaysia</option>
+        <option value="Singapore">Singapore</option>
+        <option value="Philippines">Philippines</option>
+        <option value="Indonesia">Indonesia</option>
+        <option value="New Zealand">New Zealand</option>
+        <option value="Chile">Chile</option>
+        <option value="Peru">Peru</option>
+        <option value="Colombia">Colombia</option>
+        <option value="Czech Republic">Czech Republic</option>
+        <option value="Slovakia">Slovakia</option>
+        <option value="Romania">Romania</option>
+        <option value="Bulgaria">Bulgaria</option>
+        <option value="Ukraine">Ukraine</option>
+        <option value="Belarus">Belarus</option>
+        <option value="Latvia">Latvia</option>
+        <option value="Estonia">Estonia</option>
+        <option value="Lithuania">Lithuania</option>
+      </select>
+
+    <label for="currency">Currency</label>
+    <select id="currency" required>
+      <option value="">Select currency</option>
+  <option value="USD">$ - US Dollar</option>
+  <option value="GBP">£ - British Pound</option>
+  <option value="NGN">₦ - Nigerian Naira</option>
+  <option value="CAD">$ - Canadian Dollar</option>
+  <option value="INR">₹ - Indian Rupee</option>
+  <option value="AUD">$ - Australian Dollar</option>
+  <option value="EUR">€ - Euro</option>
+  <option value="JPY">¥ - Japanese Yen</option>
+  <option value="CNY">¥ - Chinese Yuan</option>
+  <option value="MXN">$ - Mexican Peso</option>
+  <option value="BRL">R$ - Brazilian Real</option>
+  <option value="ZAR">R - South African Rand</option>
+  <option value="CHF">CHF - Swiss Franc</option>
+  <option value="SGD">$ - Singapore Dollar</option>
+  <option value="HKD">$ - Hong Kong Dollar</option>
+  <option value="SEK">kr - Swedish Krona</option>
+  <option value="NOK">kr - Norwegian Krone</option>
+  <option value="DKK">kr - Danish Krone</option>
+  <option value="SAR">ر.س - Saudi Riyal</option>
+  <option value="MYR">RM - Malaysian Ringgit</option>
+  <option value="THB">฿ - Thai Baht</option>
+  <option value="PHP">₱ - Philippine Peso</option>
+  <option value="IDR">Rp - Indonesian Rupiah</option>
+  <option value="TRY">₺ - Turkish Lira</option>
+  <option value="PLN">zł - Polish Zloty</option>
+  <option value="HUF">Ft - Hungarian Forint</option>
+  <option value="CZK">Kč - Czech Koruna</option>
+  <option value="RON">lei - Romanian Leu</option>
+  <option value="ILS">₪ - Israeli New Shekel</option>
+  <option value="KRW">₩ - South Korean Won</option>
+  <option value="VND">₫ - Vietnamese Dong</option>
+  <option value="EGP">ج.م - Egyptian Pound</option>
+  <option value="PKR">₨ - Pakistani Rupee</option>
+  <option value="BHD">د.ب - Bahraini Dinar</option>
+  <option value="KWD">د.ك - Kuwaiti Dinar</option>
+  <option value="QAR">ر.ق - Qatari Riyal</option>
+  <option value="OMR">ر.ع. - Omani Rial</option>
+  <option value="KZT">₸ - Kazakhstani Tenge</option>
+  <option value="UAH">₴ - Ukrainian Hryvnia</option>
+  <option value="LKR">Rs - Sri Lankan Rupee</option>
+  <option value="BDT">৳ - Bangladeshi Taka</option>
+  <option value="NGN">₦ - Nigerian Naira</option>
+  <option value="GHS">GH₵ - Ghanaian Cedi</option>
+  <option value="KES">KSh - Kenyan Shilling</option>
+  <option value="MAD">د.م. - Moroccan Dirham</option>
+  <option value="ARS">$ - Argentine Peso</option>
+  <option value="CLP">$ - Chilean Peso</option>
+  <option value="COP">$ - Colombian Peso</option>
+  <option value="PEN">S/. - Peruvian Nuevo Sol</option>
+  <option value="VEF">Bs.S - Venezuelan Bolívar</option>
+  <option value="CUP">₱ - Cuban Peso</option>
+  <option value="MWK">MK - Malawian Kwacha</option>
+  <option value="GEL">₾ - Georgian Lari</option>
+  <option value="RUB">₽ - Russian Ruble</option>
+  <option value="AZN">₼ - Azerbaijani Manat</option>
+  <option value="MDL">lei - Moldovan Leu</option>
+  <option value="ISK">kr - Icelandic Króna</option>
+  <option value="BAM">KM - Bosnia and Herzegovina Convertible Mark</option>
+  <option value="MKD">ден - Macedonian Denar</option>
+  <option value="ALL">Lek - Albanian Lek</option>
+  <option value="RSD">дин. - Serbian Dinar</option>
+  <option value="BGN">лв - Bulgarian Lev</option>
+  <option value="HRK">kn - Croatian Kuna</option>
+  <option value="LTL">Lt - Lithuanian Litas</option>
+  <option value="LVL">Ls - Latvian Lats</option>
+</select>
+
+    <label for="account">From Account</label>
+    <select id="account" required>
+      <option value="">Select account</option>
+      <option value="checking">Checking</option>
+      <option value="savings">Savings</option>
+    </select>
+
+    <label for="recipient">Recipient Name</label>
+    <input type="text" id="recipient" required />
+
+    <label for="amount">Amount</label>
+    <input type="number" id="amount" required />
+
+    <label for="date">Date</label>
+    <input type="date" id="date" required />
+
+    <button type="submit">Transfer</button>
+  </form>
+</div>
+
+<div class="overlay" id="overlay"></div>
+
+<!-- Popup 1: Transfer Password -->
+<div class="popup" id="popup1">
+  <h3>Enter Transfer Password</h3>
+  <input type="password" id="transferPasswordInput" placeholder="Enter password" />
+  <button onclick="validatePassword()">Next</button>
+</div>
+
+<!-- Popup 2: OTP Code -->
+<div class="popup" id="popup2">
+  <h3>Confirm OTP Code Sent to Registered Number</h3>
+  <input type="text" id="otpInput" placeholder="Enter OTP" />
+  <div class="countdown" id="timer">01:00</div>
+  <button onclick="validateOTP()">Next</button>
+</div>
+
+<!-- Popup 3: Account Frozen -->
+<div class="popup" id="popup3">
+  <h3>This account has been frozen</h3>
+  <p>Cannot perform any transaction at the moment.</p>
+  <button onclick="closePopups()">Close</button>
+</div>
+
+<script>
+  const CORRECT_PASSWORD = "133x";
+  const CORRECT_OTP = "597834";
+
+  document.getElementById('transferForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    document.getElementById('overlay').style.display = 'block';
+    document.getElementById('popup1').style.display = 'block';
+  });
+
+  function validatePassword() {
+    const input = document.getElementById('transferPasswordInput').value.trim();
+    if (input === CORRECT_PASSWORD) {
+      document.getElementById('popup1').style.display = 'none';
+      document.getElementById('popup2').style.display = 'block';
+      startCountdown();
+    } else {
+      alert("Incorrect transfer password.");
+    }
+  }
+
+  function validateOTP() {
+    const input = document.getElementById('otpInput').value.trim();
+    if (input === CORRECT_OTP) {
+      document.getElementById('popup2').style.display = 'none';
+      document.getElementById('popup3').style.display = 'block';
+    } else {
+      alert("Incorrect OTP code.");
+    }
+  }
+
+  function closePopups() {
+    document.getElementById('overlay').style.display = 'none';
+    for (let i = 1; i <= 3; i++) {
+      document.getElementById(`popup${i}`).style.display = 'none';
+    }
+  }
+
+  function startCountdown() {
+    let timeLeft = 60;
+    const timerDisplay = document.getElementById('timer');
+
+    const countdown = setInterval(() => {
+      let minutes = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+      let seconds = String(timeLeft % 60).padStart(2, '0');
+      timerDisplay.textContent = `${minutes}:${seconds}`;
+      timeLeft--;
+
+      if (timeLeft < 0) {
+        clearInterval(countdown);
+        timerDisplay.textContent = '00:00';
+      }
+    }, 1000);
+  }
+</script>
+
+</body>
+</html>
