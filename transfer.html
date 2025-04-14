@@ -97,8 +97,7 @@
       border-radius: 5px;
       padding: 5px 10px;
     }
-    
-     .bottom-nav {
+    .bottom-nav {
       position: fixed;
       bottom: 0;
       width: 100%;
@@ -128,6 +127,9 @@
       border-top: 1px solid #ddd;
       padding: 10px 0;
     }
+    .no-underline {
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
@@ -140,47 +142,27 @@
       <span>🛒 Products</span>
       <a href="index.html"><span>🔚 Log Out</span></a>
     </div>
-</div>
-
-<script>
-  function updateTime() {
-    const timeElement = document.getElementById('current-time');
-    const now = new Date();
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    timeElement.textContent = `${hours}:${minutes}`;
-  }
-
-  // Update the time every minute
-  setInterval(updateTime, 60000);
-
-  // Set the initial time immediately
-  updateTime();
-</script>
+  </div>
 
   <div class="search-bar">
     <input type="text" placeholder="How can we help?" />
   </div>
-  <div class="main-buttons">
-  <div class="button-tile" onclick="selectOption('Transfer')">
-    <a href="send.html" class="no-underline">🔁<br>Transfer<br><small>between my accounts</small></a>
-  </div>
-  <div class="button-tile" onclick="selectOption('Zelle')">
-    <a href="#" class="no-underline">💸<br>Zelle<br><small>send or request</small></a>
-  </div>
-  <div class="button-tile" onclick="selectOption('Pay Bills')">
-    <a href="#" class="no-underline">📅<br>Pay Bills<br><small>pay now or schedule</small></a>
-  </div>
-  <div class="button-tile" onclick="selectOption('Wire')">
-    <a href="wire.html" class="no-underline">📤<br>Wire<br><small>U.S. or international</small></a>
-  </div>
-</div>
 
-<style>
-  .no-underline {
-    text-decoration: none;
-  }
-</style
+  <div class="main-buttons">
+    <div class="button-tile" onclick="selectOption('Transfer')">
+      <a href="send.html" class="no-underline"><img src="w1.png" width="70px"><br>Transfer<br><small>between my accounts</small></a>
+    </div>
+    <div class="button-tile" onclick="selectOption('Zelle')">
+      <a href="#" class="no-underline"><img src="w2.png" width="50px"><br>Zelle<br><small>send or request</small></a>
+    </div>
+    <div class="button-tile" onclick="selectOption('Pay Bills')">
+      <a href="#" class="no-underline"><img src="w3.png" width="50px"><br>Pay Bills<br><small>pay now or schedule</small></a>
+    </div>
+    <div class="button-tile" onclick="selectOption('Wire')">
+      <a href="startwire.html" class="no-underline"><img src="w4.png" width="50px"><br>Wire<br><small>U.S. or international</small></a>
+    </div>
+  </div>
+
   <div class="activity">
     <h3>Activity</h3>
     <div class="activity-card">
@@ -201,30 +183,32 @@
       Received
     </div>
   </div>
-   <div class="bottom-nav">
-    <div onclick="alert('Account Frozen!')"><span>💲</span>Accounts</div>
-    <div onclick="alert('Account Frozen!')"><span>🔁</span>Pay & Transfer</div>
-    <div onclick="alert('Account Frozen!')"><span>📄</span>Deposit Checks</div>
-    <div onclick="alert('Account Frozen!')"><span>💱</span>Trade</div>
-  </div>
-  <script>
-    function showTab(tab) {
-      const accountsTab = document.getElementById('tab-accounts');
-      const dashboardTab = document.getElementById('tab-dashboard');
-      const accountsContent = document.getElementById('accounts-content');
-      const dashboardContent = document.getElementById('dashboard-content');
 
-      if (tab === 'accounts') {
-        accountsTab.classList.add('active');
-        dashboardTab.classList.remove('active');
-        accountsContent.classList.remove('hidden');
-        dashboardContent.classList.add('hidden');
-      } else {
-        dashboardTab.classList.add('active');
-        accountsTab.classList.remove('active');
-        dashboardContent.classList.remove('hidden');
-        accountsContent.classList.add('hidden');
-      }
+  <div class="bottom-nav">
+    <div onclick="showFrozenAlert()"><span>💲</span>Accounts</div>
+    <div onclick="showFrozenAlert()"><span>🔁</span>Pay & Transfer</div>
+    <div onclick="showFrozenAlert()"><span>📄</span>Deposit Checks</div>
+    <div onclick="showFrozenAlert()"><span>💱</span>Trade</div>
+  </div>
+
+  <script>
+    function updateTime() {
+      const timeElement = document.getElementById('current-time');
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      timeElement.textContent = `${hours}:${minutes}`;
+    }
+
+    setInterval(updateTime, 60000);
+    updateTime();
+
+    function showFrozenAlert() {
+      alert('Account Frozen!');
+    }
+
+    function selectOption(option) {
+      console.log(`Selected: ${option}`);
     }
   </script>
 </body>
